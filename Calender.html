@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Calendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        .calendar-container {
+            width: 80%;
+            max-width: 800px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .calendar-header {
+            background: #4CAF50;
+            color: #fff;
+            padding: 15px;
+            font-size: 1.5em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .calendar-header button {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+
+        .calendar-header button:hover {
+            opacity: 0.8;
+        }
+
+        .calendar-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .month-name {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .footer {
+            padding: 10px;
+            font-size: 0.9em;
+            background-color: #f1f1f1;
+        }
+
+        .footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="calendar-container">
+        <div class="calendar-header">
+            <button id="prev-month">&#9664;</button>
+            <div class="month-name" id="month-name">January</div>
+            <button id="next-month">&#9654;</button>
+        </div>
+        <img id="month-image" class="calendar-image" src="images/january.jpg" alt="January">
+        <div class="footer">
+            Created by <a href="#">Your Name</a>
+        </div>
+    </div>
+
+    <script>
+        // Month data
+        const months = [
+            { name: "January", image: "images/Green White Minimalist Leaves March Calender 2023 Desktop Wallpaper.png" },
+            { name: "February", image: "images/jan.png" },
+            { name: "March", image: "images/march.jpg" },
+            { name: "April", image: "images/april.jpg" },
+            { name: "May", image: "images/may.jpg" },
+            { name: "June", image: "images/june.jpg" },
+            { name: "July", image: "images/july.jpg" },
+            { name: "August", image: "images/august.jpg" },
+            { name: "September", image: "images/september.jpg" },
+            { name: "October", image: "images/october.jpg" },
+            { name: "November", image: "images/november.jpg" },
+            { name: "December", image: "images/december.jpg" }
+        ];
+
+        let currentMonth = 0;
+
+        const monthNameElement = document.getElementById("month-name");
+        const monthImageElement = document.getElementById("month-image");
+
+        function updateCalendar() {
+            monthNameElement.textContent = months[currentMonth].name;
+            monthImageElement.src = months[currentMonth].image;
+            monthImageElement.alt = months[currentMonth].name;
+        }
+
+        document.getElementById("prev-month").addEventListener("click", () => {
+            currentMonth = (currentMonth - 1 + months.length) % months.length;
+            updateCalendar();
+        });
+
+        document.getElementById("next-month").addEventListener("click", () => {
+            currentMonth = (currentMonth + 1) % months.length;
+            updateCalendar();
+        });
+
+        updateCalendar();
+    </script>
+</body>
+</html>
